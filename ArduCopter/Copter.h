@@ -993,6 +993,7 @@ private:
 #if MODE_AUTOROTATE_ENABLED == ENABLED
     ModeAutorotate mode_autorotate;
 #endif
+    ModeDrawStar mode_DrawStar;
 
     // mode.cpp
     Mode *mode_from_mode_num(const Mode::Number mode);

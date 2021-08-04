@@ -38,7 +38,7 @@ struct Guided_Limit {
 } guided_limit;
 
 // guided_init - initialise guided controller
-bool ModeGuided::init(bool ignore_checks)
+bool ModeGuided::init(bool ignore_checks)//初始化
 {
     // start in position control mode
     pos_control_start();
@@ -47,7 +47,7 @@ bool ModeGuided::init(bool ignore_checks)
 
 
 // do_user_takeoff_start - initialises waypoint controller to implement take-off
-bool ModeGuided::do_user_takeoff_start(float final_alt_above_home)
+bool ModeGuided::do_user_takeoff_start(float final_alt_above_home)//引导模式下起飞
 {
     guided_mode = Guided_TakeOff;
 
@@ -75,7 +75,7 @@ bool ModeGuided::do_user_takeoff_start(float final_alt_above_home)
 }
 
 // initialise guided mode's position controller
-void ModeGuided::pos_control_start()
+void ModeGuided::pos_control_start()//开始位置控制
 {
     // set to position control mode
     guided_mode = Guided_WP;
@@ -95,7 +95,7 @@ void ModeGuided::pos_control_start()
 }
 
 // initialise guided mode's velocity controller
-void ModeGuided::vel_control_start()
+void ModeGuided::vel_control_start()//开始速度控制
 {
     // set guided_mode to velocity controller
     guided_mode = Guided_Velocity;
@@ -113,7 +113,7 @@ void ModeGuided::vel_control_start()
 }
 
 // initialise guided mode's posvel controller
-void ModeGuided::posvel_control_start()
+void ModeGuided::posvel_control_start()//开始位置、速度控制
 {
     // set guided_mode to velocity controller
     guided_mode = Guided_PosVel;
@@ -139,13 +139,13 @@ void ModeGuided::posvel_control_start()
     auto_yaw.set_mode(AUTO_YAW_HOLD);
 }
 
-bool ModeGuided::is_taking_off() const
+bool ModeGuided::is_taking_off() const//判断是否起飞
 {
     return guided_mode == Guided_TakeOff;
 }
 
 // initialise guided mode's angle controller
-void ModeGuided::angle_control_start()
+void ModeGuided::angle_control_start()//开始角度控制
 {
     // set guided_mode to velocity controller
     guided_mode = Guided_Angle;
@@ -176,7 +176,7 @@ void ModeGuided::angle_control_start()
 // guided_set_destination - sets guided mode's target destination
 // Returns true if the fence is enabled and guided waypoint is within the fence
 // else return false if the waypoint is outside the fence
-bool ModeGuided::set_destination(const Vector3f& destination, bool use_yaw, float yaw_cd, bool use_yaw_rate, float yaw_rate_cds, bool relative_yaw)
+bool ModeGuided::set_destination(const Vector3f& destination, bool use_yaw, float yaw_cd, bool use_yaw_rate, float yaw_rate_cds, bool relative_yaw)//设置目标航点，输入三维向量
 {
     // ensure we are in position control mode
     if (guided_mode != Guided_WP) {
@@ -204,7 +204,7 @@ bool ModeGuided::set_destination(const Vector3f& destination, bool use_yaw, floa
     return true;
 }
 
-bool ModeGuided::get_wp(Location& destination)
+bool ModeGuided::get_wp(Location& destination)//获取目标航点
 {
     if (guided_mode != Guided_WP) {
         return false;
@@ -215,7 +215,7 @@ bool ModeGuided::get_wp(Location& destination)
 // sets guided mode's target from a Location object
 // returns false if destination could not be set (probably caused by missing terrain data)
 // or if the fence is enabled and guided waypoint is outside the fence
-bool ModeGuided::set_destination(const Location& dest_loc, bool use_yaw, float yaw_cd, bool use_yaw_rate, float yaw_rate_cds, bool relative_yaw)
+bool ModeGuided::set_destination(const Location& dest_loc, bool use_yaw, float yaw_cd, bool use_yaw_rate, float yaw_rate_cds, bool relative_yaw)//设置目标航点，输入经纬度
 {
     // ensure we are in position control mode
     if (guided_mode != Guided_WP) {
@@ -248,7 +248,7 @@ bool ModeGuided::set_destination(const Location& dest_loc, bool use_yaw, float y
 }
 
 // guided_set_velocity - sets guided mode's target velocity
-void ModeGuided::set_velocity(const Vector3f& velocity, bool use_yaw, float yaw_cd, bool use_yaw_rate, float yaw_rate_cds, bool relative_yaw, bool log_request)
+void ModeGuided::set_velocity(const Vector3f& velocity, bool use_yaw, float yaw_cd, bool use_yaw_rate, float yaw_rate_cds, bool relative_yaw, bool log_request)//设置速度
 {
     // check we are in velocity control mode
     if (guided_mode != Guided_Velocity) {
@@ -269,7 +269,7 @@ void ModeGuided::set_velocity(const Vector3f& velocity, bool use_yaw, float yaw_
 }
 
 // set guided mode posvel target
-bool ModeGuided::set_destination_posvel(const Vector3f& destination, const Vector3f& velocity, bool use_yaw, float yaw_cd, bool use_yaw_rate, float yaw_rate_cds, bool relative_yaw)
+bool ModeGuided::set_destination_posvel(const Vector3f& destination, const Vector3f& velocity, bool use_yaw, float yaw_cd, bool use_yaw_rate, float yaw_rate_cds, bool relative_yaw)//设置目标位置、速度
 {
     // check we are in velocity control mode
     if (guided_mode != Guided_PosVel) {
@@ -301,7 +301,7 @@ bool ModeGuided::set_destination_posvel(const Vector3f& destination, const Vecto
 }
 
 // set guided mode angle target
-void ModeGuided::set_angle(const Quaternion &q, float climb_rate_cms, bool use_yaw_rate, float yaw_rate_rads)
+void ModeGuided::set_angle(const Quaternion &q, float climb_rate_cms, bool use_yaw_rate, float yaw_rate_rads)//设置角度
 {
     // check we are in velocity control mode
     if (guided_mode != Guided_Angle) {

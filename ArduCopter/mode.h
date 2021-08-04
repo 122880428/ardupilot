@@ -36,6 +36,7 @@ public:
         ZIGZAG    =    24,  // ZIGZAG mode is able to fly in a zigzag manner with predefined point A and point B
         SYSTEMID  =    25,  // System ID mode produces automated system identification signals in the controllers
         AUTOROTATE =   26,  // Autonomous autorotation
+        DRAWSTAR = 27;      //五角星航点
     };
 
     // constructor
@@ -811,6 +812,39 @@ private:
 
     // controls which controller is run (pos or vel):
     GuidedMode guided_mode = Guided_TakeOff;
+
+};
+
+
+class ModeDrawStar : public Mode {
+
+public:
+    // inherit constructor
+    using Mode::Mode;
+
+    bool init(bool ignore_checks) override;
+    void run() override;
+
+    bool requires_GPS() const override { return true; }//是否需要GPS
+    bool has_manual_throttle() const override { return false; }//是否手动油门控制
+    bool allows_arming(bool from_gcs) const override { return false; }//是否允许地面站解锁
+    bool is_autopilot() const override { return true; }//是否自动控制
+    bool has_user_takeoff(bool must_navigate) const override { return false; }//是否用户控制起飞
+    bool in_guided_mode() const override { return true; }//是否需要引导模式
+
+protected:
+
+    const char *name() const override { return "DRAWSTAR"; }//地面站交互用的
+    const char *name4() const override { return "GUID"; }
+
+private:
+    Vector3f path[10];//定义10个航点
+    int path_num;//定义当前飞到哪个航点
+
+    void generate_path();//生成航点
+    void pos_control_start();
+    void pos_control_run();
+    void vel_control_run();
 
 };
 
