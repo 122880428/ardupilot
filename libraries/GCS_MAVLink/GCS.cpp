@@ -43,7 +43,7 @@ void GCS::send_textv(MAV_SEVERITY severity, const char *fmt, va_list arg_list)
     send_statustext(severity, GCS_MAVLINK::active_channel_mask() | GCS_MAVLINK::streaming_channel_mask(), text);
 }
 
-void GCS::send_text(MAV_SEVERITY severity, const char *fmt, ...)
+void GCS::send_text(MAV_SEVERITY severity, const char *fmt, ...)//王棚：发送信息到地面站
 {
     va_list arg_list;
     va_start(arg_list, fmt);

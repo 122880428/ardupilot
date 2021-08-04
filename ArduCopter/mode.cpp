@@ -505,7 +505,7 @@ void Mode::make_safe_spool_down()
 /*
   get a height above ground estimate for landing
  */
-int32_t Mode::get_alt_above_ground_cm(void)
+int32_t Mode::get_alt_above_ground_cm(void)  //王棚：获取当前高度（厘米）
 {
     int32_t alt_above_ground;
     if (copter.rangefinder_alt_ok()) {
