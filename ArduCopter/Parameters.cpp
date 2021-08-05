@@ -960,7 +960,7 @@ const AP_Param::GroupInfo ParametersG2::var_info[] = {
     // @Path: ../libraries/AC_Autorotation/AC_Autorotation.cpp
     AP_SUBGROUPINFO(arot, "AROT_", 37, ParametersG2, AC_Autorotation),
 #endif
-
+    AP_GROUPINFO("STAR_R_CM", 37, ParametersG2, star_radius_cm, 1000),
 
 
     AP_GROUPEND
