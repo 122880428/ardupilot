@@ -835,7 +835,7 @@ public:
 protected:
 
     const char *name() const override { return "DRAWSTAR"; }//地面站交互用的
-    const char *name4() const override { return "GUID"; }
+    const char *name4() const override { return "DRAWSTAR"; }
 
 private:
     Vector3f path[10];//定义10个航点

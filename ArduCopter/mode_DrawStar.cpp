@@ -1,6 +1,6 @@
 #include "Copter.h"
 
-#if MODE_DRAWSTAR_ENABLED == ENABLED
+//#if MODE_DRAWSTAR_ENABLED == ENABLED
 
 /*
  * 五角星航线模式初始化
@@ -101,4 +101,4 @@ void ModeDrawStar::pos_control_run() // 注意，此函数直接从mode_guided.c
     }
 }
 
-#endif
+//#endif
